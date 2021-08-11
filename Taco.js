@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const token = "NjIyMTYyMjIzNjM2MTUyMzI5.XXv3uQ.SJnzT_QSVa5IX7Vyqj0gkK_vdpc";
+const token = ""; // please don't try
 const PREFIX = "!";
-const ownerUser = bot.users.fetch("476510760793669653");
+const ownerUser = bot.users.fetch("476510760793669653"); //reach me
 const version = "1.0.01"
 
 function loadcmds () {
