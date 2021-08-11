@@ -21,7 +21,7 @@ module.exports = {
         } else if (args[1].toLowerCase() == 'fun') {
             const embed = new Discord.MessageEmbed()
                 .setTitle('Fun')
-                .setDescription(prefix + 'yugioh (laserup,laserdown,boost,anti-gay,delet,wishluck,faketr)\n' + prefix + 'say(stuff you want me to say lol)\n' + prefix + '8ball(your question)\n' + prefix + 'oof')
+                .setDescription(prefix + 'yugioh (laserup,laserdown,boost,delet,wishluck,faketr)\n' + prefix + 'say(stuff you want me to say lol)\n' + prefix + '8ball(your question)\n' + prefix + 'oof')
                 .setColor(0x0000FF)
                 .setFooter("Requested by " + msg.author.username, msg.author.avatarURL());
             msg.channel.send(embed);

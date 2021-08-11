@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const token = "";
+const token = "NjIyMTYyMjIzNjM2MTUyMzI5.XXv3uQ.SJnzT_QSVa5IX7Vyqj0gkK_vdpc";
 const PREFIX = "!";
 const ownerUser = bot.users.fetch("476510760793669653");
-const version = "1.0.0"
+const version = "1.0.01"
 
 function loadcmds () {
 const fs = require('fs');
@@ -24,13 +24,13 @@ bot.on('ready', () => {
 
 bot.on('message', msg => {
     let args = msg.content.toLowerCase().substring(PREFIX.length).split(" ");
-    if (msg.content.startsWith(PREFIX) && !msg.author.bot) { // Prevent bot from responding to its own messages
+    if (msg.content.startsWith(PREFIX) && !msg.author.bot) { // Prevents bot from responding to its own messages.
         switch (args[0]) {
            case 'info':
                 if (args[1] === 'version' || args[1] === 'Version') {
                     const embed = new Discord.MessageEmbed()
                         .setTitle("Version")
-                        .addField(`The Version is ${version} This was never accurate`)
+                        .addField(`The Version is ${version}, started counting since the bot became open source`)
                         .setColor(0x00FF00)
                         .setFooter("Requested by " + msg.author.username, msg.author.avatarURL());
                     msg.channel.send(embed);
@@ -48,7 +48,7 @@ bot.on('message', msg => {
                         .addField("Insufficent Information", "You didn't tell me what to do or you just made a typo.")
                         .setColor(0xFF0000)
                         .setFooter("Requested by " + msg.author.username, msg.author.avatarURL());
-                    msg.channel.send(embed);
+                    msg.channel.send(embed); // ngl i never bother to update this like ever.
                 }
                 break;
             case 'clear':
@@ -81,19 +81,19 @@ bot.on('message', msg => {
                 bot.commands.get('math').execute(msg, args);
                 break;
             case 'setprefix':
-                if (msg.member.hasPermission('ADMINISTRATOR')) {
+                if (!msg.author == bot.users.fetch("476510760793669653")) {
                     if (!args[1]) {
-                        msg.channel.send("pls specify what to set the prefix to");
+                        msg.channel.send("Please specify what to set the prefix to!");
                     } else {
                         PREFIX = args[1];
                         msg.channel.send("prefix was set to " + "\'" + PREFIX + "\'");
                     }
-                } else { msg.channel.send("You must have administrator perms"); }
+                } else { msg.channel.send("You must be the creator of the bot!");} //i changed this so that only i can use it because it changes the prefix for every server
                 break;
             case 'setstatus':
                 if (msg.author.id == "476510760793669653") {
                     if (!args[2] || !args[1]) {
-                        msg.channel.send("Please specify what to set the status to (\"1\" \"people using light mode\").");
+                        msg.channel.send("Please specify what to set the status to (\"1\" \"people being dank\").");
                     }
                     else if (args[1] % 1 == 0) {
                         var statusVar = msg.content.substr(PREFIX.length + 12);
@@ -108,9 +108,9 @@ bot.on('message', msg => {
                             msg.channel.send("status was set to listening " + "\'" + statusVar + "\'");
                         } else if (statusVar != null && args[1] == 3) {
                             bot.user.setActivity(statusVar, { type: "PLAYING" });
-                            msg.channel.send("status was set to playing " + "\'" + statusVar + "\'");
+                            msg.channel.send("status was set to playing " + "\'" + statusVar + "\'");// Status doesn't stay permanently, it reverts back when bot is restarted.
                         }
-                    } else { msg.reply("use a number for the first part") }
+                    } else { msg.reply("use a number for the first part") } 
                 }
                 break;
             case 'yugioh':
@@ -139,19 +139,12 @@ bot.on('message', msg => {
                 bot.commands.get('avatar').execute(msg, args);
                 break;
             case 'reload':
-                    if(!msg.author == bot.users.fetch("476510760793669653")){msg.channel.send('How did you find this command?') 
+                    if(!msg.author == bot.users.fetch("476510760793669653")){msg.channel.send('How did you find this command?'); //This is here because i'm way too lazy to restart the bot to apply changes. It only works with the external files though.
             }else{
                 msg.channel.send('Reloaded!')
                 loadcmds()
             }
                 break;
-            case 'height':
-            if (!args[1]){
-                msg.channel.send("Please tell me your height for accurate measurment")
-            }else{
-                msg.channel.send('Your height is ' + args.slice(1).join(' '))
-            }
-            break;
         }
     }
 });

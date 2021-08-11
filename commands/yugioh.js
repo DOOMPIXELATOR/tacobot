@@ -23,12 +23,6 @@ module.exports = {
                 .setColor(0x0000FF)
                 .setFooter("Requested by " + msg.author.username, msg.author.avatarURL());
             msg.channel.send(embed);
-        } else if (args[1] == "antigay") {
-            const embed = new Discord.MessageEmbed()
-                .setImage("https://cdn.discordapp.com/attachments/626701381838962688/627587613909581837/yu-gi-oh_card_anti_gay.jpg")
-                .setColor(0x0000FF)
-                .setFooter("Requested by " + msg.author.username, msg.author.avatarURL());
-            msg.channel.send(embed);
         } else if (args[1] == "boost") {
             const embed = new Discord.MessageEmbed()
                 .setImage("https://cdn.discordapp.com/attachments/626701381838962688/627587613909581834/yu-gi-oh_card_boost.jpg")
